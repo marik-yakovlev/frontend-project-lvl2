@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-const { Command } = require('commander');
-const program = new Command();
+import { program } from 'commander';
 
 program
-  .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
-  .version('0.8.0');
+  .version('0.0.1', '-V, --version', 'output the version number')
+program.parse();
