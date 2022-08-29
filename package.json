@@ -22,8 +22,15 @@
   "homepage": "https://github.com/marik-yakovlev/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^9.4.0",
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.0",
     "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "jest": "^29.0.1"
   }
 }
