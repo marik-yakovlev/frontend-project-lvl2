@@ -32,6 +32,10 @@ module.exports = {
         'semi': [
             'error',
             'always'
-        ]
+        ],
+        'no-underscore-dangle': [
+            2, { "allow": 
+            ["__filename", "__dirname"] 
+        }]
     }
 };
