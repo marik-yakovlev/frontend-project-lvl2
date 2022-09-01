@@ -1,7 +1,5 @@
-import { readFileSync } from 'fs';
 import _ from 'lodash';
-import path from 'path';
-import process from 'process';
+import parseFile from './parsers.js';
 
 const diffData = (file1, file2) => {
     const keys1 = _.keys(file1);
@@ -27,12 +25,8 @@ const diffData = (file1, file2) => {
 
 
 export default (filepath1, filepath2) => {
-    const buildFullPath = (filepath) => path.resolve(process.cwd(), filepath);
-    const readFileData = (filepath) => readFileSync(filepath,'utf8');
-    const data1 = readFileData(buildFullPath(filepath1));
-    const data2 = readFileData(buildFullPath(filepath2));
-    const parsedData1 = JSON.parse(data1);
-    const parsedData2 = JSON.parse(data2);
+    const parsedData1 = parseFile(filepath1);
+    const parsedData2 = parseFile(filepath2);
     return diffData(parsedData1, parsedData2);
 };
 
