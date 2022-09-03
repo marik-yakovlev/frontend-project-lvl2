@@ -17,9 +17,10 @@ This is the utility, which shows the difference between two files. The output ca
 
 
 ## Difference between two nested files (stylish format):
-
+[![asciicast](https://asciinema.org/a/518756.svg)](https://asciinema.org/a/518756)
 
 ## Difference between two nested files (plain format):
-
+[![asciicast](https://asciinema.org/a/518757.svg)](https://asciinema.org/a/518757)
 
 ## Difference between two nested files (json format):
+[![asciicast](https://asciinema.org/a/518758.svg)](https://asciinema.org/a/518758)
