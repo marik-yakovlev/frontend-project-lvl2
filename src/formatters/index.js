@@ -4,10 +4,6 @@ import json from './json.js';
 
 const formatter = { stylish, plain, json };
 
-const format = (file, formatName = 'stylish') => {
+const format = (file, formatName = 'stylish') => formatter[formatName](file);
 
-    return formatter[formatName](file);
-
-};
-  
 export default format;
