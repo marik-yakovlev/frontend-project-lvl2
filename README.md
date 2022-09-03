@@ -8,6 +8,33 @@
 This is the utility, which shows the difference between two files. The output can be shown with different formats.
 <br></br>
 
+## Installation:
+
+```sh
+# Step 1 — clone this repository
+$ git clone https://github.com/M4XPRD/frontend-project-lvl2
+# Step 2 — install the dependencies
+$ make install
+# Step 3 — install the packages
+$ sudo npm link
+```
+## List of commands in terminal:
+
+**Important note** — in order to use this utility correctly, you should move to ***__fixtures__*** folder in terminal, where you can upload and use your files. 
+
+```sh
+# Help window
+gendiff -h
+# All commands below should run from __fixtures__ folder!
+# Show difference with standart (stylish) format
+gendiff file1.json file2.json
+# Show difference with stylish format
+gendiff --format stylish file1.json file2.json
+# Show difference with plain format
+gendiff --format plain file1.json file2.json
+# Show difference with json format
+gendiff --format json file1.json file2.json
+```
 
 ## Difference between two flat JSON files:
 [![asciicast](https://asciinema.org/a/518749.svg)](https://asciinema.org/a/518749)
