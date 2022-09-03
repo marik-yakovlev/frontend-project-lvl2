@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import yaml from 'js-yaml';
 
 const formats = {
@@ -6,6 +7,11 @@ const formats = {
   yml: yaml.load,
 };
 
-const parseFile = (file, extension) => formats[extension](file);
+const parseFile = (file, extension) => {
+  if (!_.has(formats, extension)) {
+    throw new Error('Unknown extension!');
+  }
+  return formats[extension](file);
+};
 
 export default parseFile;
