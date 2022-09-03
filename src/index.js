@@ -1,32 +1,33 @@
-import _ from 'lodash';
+import { readFileSync } from 'fs';
+import path from 'path';
 import parseFile from './parsers.js';
+import objectDiff from './objectDiff.js';
+import format from './formatter.js';
+import process from 'process';
 
-const diffData = (file1, file2) => {
-    const keys1 = _.keys(file1);
-    const keys2 = _.keys(file2);
-    const keys = _.sortBy(_.union(keys1, keys2));
+const buildFullPath = (filepath) => path.resolve(process.cwd(), filepath);
 
-    const result = keys.map((key) => {
-        const value1 = file1[key];
-        const value2 = file2[key];
-        if (!_.has(file1, key)) {
-            return `+ ${key}: ${value2}`;
-        } if (!_.has(file2, key)) {
-            return `- ${key}: ${value1}`;
-        } if (!_.isEqual(value1, value2)) {
-            return `- ${key}: ${value1}\n+ ${key}: ${value2}`;
-        }
-        return `  ${key}: ${value1}`;
-    
-    });
-    const newResult = `{\n${result.join('\n').trim()}\n}`;
-    return newResult;
+const readFileData = (filepath) => readFileSync(filepath, 'utf-8');
+
+const getExtension = (filepath) => path.extname(filepath).slice(1).toLowerCase();
+
+
+const data = (file) => {
+    const fullPath = buildFullPath(file);
+    const extension = getExtension(file);
+    const readFile = readFileData(fullPath);
+    return parseFile(readFile, extension);
 };
 
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+    const parsedFile1 = data(filepath1);
+    const parsedFile2 = data(filepath2);
 
-export default (filepath1, filepath2) => {
-    const parsedData1 = parseFile(filepath1);
-    const parsedData2 = parseFile(filepath2);
-    return diffData(parsedData1, parsedData2);
+    const getDiff = objectDiff(parsedFile1, parsedFile2);
+    const formattedFile = format(getDiff, formatName);
+
+    return formattedFile;
 };
+
+export default genDiff;
 
