@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url';
 import { readFileSync } from 'fs';
 import genDiff from '../src/index.js';
 import path from 'path';
+import stylish from '../src/formatters/stylish.js';
 
 const getFixturePath = (filename) => {
     const __filename = fileURLToPath(import.meta.url);
@@ -16,12 +17,23 @@ const filepath2 = getFixturePath('file2.json');
 const filepath3 = getFixturePath('file1.yaml');
 const filepath4 = getFixturePath('file2.yaml');
 
-const expectedResult = readFile('expectedStylish.txt');
+const expectedStylish = readFile('expectedStylish.txt');
+const expectedPlain = readFile('expectedPlain.txt');
 
-test('compare JSON', () => {
-    expect(genDiff(filepath1, filepath2)).toBe(expectedResult);
+
+
+test('compare JSON (stylish)', () => {
+    expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish);
 });
 
-test('compare YAML', () => {
-    expect(genDiff(filepath3, filepath4)).toBe(expectedResult);
+test('compare YAML (stylish)', () => {
+    expect(genDiff(filepath3, filepath4)).toEqual(expectedStylish);
+});
+
+test('compare JSON (plain)', () => {
+  expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
+});
+
+test('compare YAML(plain)', () => {
+  expect(genDiff(filepath3, filepath4, 'plain')).toEqual(expectedPlain);
 });

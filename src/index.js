@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import parseFile from './parsers.js';
 import objectDiff from './objectDiff.js';
-import format from './formatter.js';
+import format from './formatters/index.js';
 import process from 'process';
 
 const buildFullPath = (filepath) => path.resolve(process.cwd(), filepath);
