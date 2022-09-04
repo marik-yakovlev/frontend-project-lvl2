@@ -8,19 +8,24 @@
 This is the utility, which shows the difference between two files. The output can be shown with different formats.
 <br></br>
 
+**List of supported extensions:**
+
+• JSON (```.json``` file extension)
+
+• YML/YAML (```.yml```or ```.yaml``` file extensions)
+<br></br>
+
 ## Installation:
 
 ```sh
 # Step 1 — clone this repository
-$ git clone https://github.com/M4XPRD/frontend-project-lvl2
+$ git clone https://github.com/marik-yakovlev/frontend-project-lvl2
 # Step 2 — install the dependencies
 $ make install
 # Step 3 — install the packages
 $ sudo npm link
 ```
 ## List of commands in terminal:
-
-**Important note** — in order to use this utility correctly, you should move to ***__fixtures__*** folder in terminal, where you can upload and use your files. 
 
 ```sh
 # Help window
