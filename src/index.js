@@ -1,16 +1,13 @@
 import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
+import process from 'process';
 import path from 'path';
 import parseFile from './parsers.js';
 import objectDiff from './objectDiff.js';
 import format from './formatters/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const buildFullPath = (filepath) => path.resolve(`${process.cwd()}`, filepath);
 
-const buildFullPath = (filepath) => (path.isAbsolute(filepath) ? filepath : path.join(__dirname, '..', '__fixtures__', filepath));
-
-const readFileData = (filename) => readFileSync(buildFullPath(filename), 'utf-8');
+const readFileData = (filepath) => readFileSync(filepath, 'utf-8');
 
 const getExtension = (filepath) => path.extname(filepath).slice(1).toLowerCase();
 
