@@ -22,4 +22,6 @@ const objectDiff = (file1, file2) => {
   return result;
 };
 
-export default objectDiff;
+const rootObjectDiff = (file1, file2) => ({type: 'root', children: objectDiff(file1, file2)});
+
+export default rootObjectDiff;
