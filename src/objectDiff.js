@@ -15,13 +15,15 @@ const objectDiff = (file1, file2) => {
     } if (!_.has(file2, key)) {
       return { key, type: 'removed', value: value1 };
     } if (!_.isEqual(value1, value2)) {
-      return { key, type: 'updated', value: { value1, value2 } };
+      return {
+        key, type: 'updated', value: { value1, value2 },
+      };
     }
     return { key, type: 'equal', value: value1 };
   });
   return result;
 };
 
-const rootObjectDiff = (file1, file2) => ({type: 'root', children: objectDiff(file1, file2)});
+const rootObjectDiff = (file1, file2) => ({ type: 'root', children: objectDiff(file1, file2) });
 
 export default rootObjectDiff;
