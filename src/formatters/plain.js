@@ -15,7 +15,10 @@ const plain = (node, path = []) => {
   const fullPath = currentPath.join('.');
   switch (node.type) {
     case 'nested':
-      return node.children.flatMap((child) => plain(child, currentPath));
+      return node.children
+        .filter((child) => child.type !== null)
+        .map((child) => plain(child, currentPath))
+        .join('');
     case 'added':
       return `Property '${fullPath}' was added with value: ${getValue(node.value)}\n`;
     case 'removed':
@@ -23,9 +26,12 @@ const plain = (node, path = []) => {
     case 'updated':
       return `Property '${fullPath}' was updated. From ${getValue(node.value.value1)} to ${getValue(node.value.value2)}\n`;
     case 'root':
-      return String((node.children.flatMap((child) => plain(child, []))).join('').trim());
+      return (node.children
+        .filter((child) => child.type !== null)
+        .map((child) => plain(child, [])))
+        .join('').trim();
     case 'equal':
-      return [];
+      return null;
     default:
       throw new Error(`Unknown type of node ${node.type}`);
   }
