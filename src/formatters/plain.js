@@ -16,7 +16,7 @@ const plain = (node, path = []) => {
   switch (node.type) {
     case 'nested':
       return node.children
-        .filter((child) => child.type !== null)
+        .filter((child) => child.type !== 'equal')
         .map((child) => plain(child, currentPath))
         .join('');
     case 'added':
@@ -27,7 +27,7 @@ const plain = (node, path = []) => {
       return `Property '${fullPath}' was updated. From ${getValue(node.value.value1)} to ${getValue(node.value.value2)}\n`;
     case 'root':
       return (node.children
-        .filter((child) => child.type !== null)
+        .filter((child) => child.type !== 'equal')
         .map((child) => plain(child, [])))
         .join('').trim();
     case 'equal':
