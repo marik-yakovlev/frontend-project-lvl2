@@ -18,18 +18,18 @@ const plain = (node, path = []) => {
       return node.children
         .filter((child) => child.type !== 'equal')
         .map((child) => plain(child, currentPath))
-        .join('');
+        .join('\n');
     case 'added':
-      return `Property '${fullPath}' was added with value: ${getValue(node.value)}\n`;
+      return `Property '${fullPath}' was added with value: ${getValue(node.value)}`;
     case 'removed':
-      return `Property '${fullPath}' was removed\n`;
+      return `Property '${fullPath}' was removed`;
     case 'updated':
-      return `Property '${fullPath}' was updated. From ${getValue(node.value.value1)} to ${getValue(node.value.value2)}\n`;
+      return `Property '${fullPath}' was updated. From ${getValue(node.value.value1)} to ${getValue(node.value.value2)}`;
     case 'root':
       return (node.children
         .filter((child) => child.type !== 'equal')
         .map((child) => plain(child, [])))
-        .join('').trim();
+        .join('\n');
     case 'equal':
       return null;
     default:
